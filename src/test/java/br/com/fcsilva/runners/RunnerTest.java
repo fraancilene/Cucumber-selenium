@@ -2,7 +2,11 @@ package br.com.fcsilva.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -16,4 +20,18 @@ import org.junit.runner.RunWith;
 
 
 )
-public class RunnerTest { }
+public class RunnerTest {
+
+//    // resetando o bando
+//    @BeforeClass
+//    public static void resetaBanco(){
+//        WebDriver driver = new ChromeDriver();
+//        driver.get("https://srbarriga.herokuapp.com");
+//        driver.findElement(By.id("email")).sendKeys("");
+//        driver.findElement(By.id("")).sendKeys("");
+//        driver.findElement(By.id("")).click();
+//        driver.findElement(By.id("")).click();
+//        driver.quit();
+//    }
+
+}

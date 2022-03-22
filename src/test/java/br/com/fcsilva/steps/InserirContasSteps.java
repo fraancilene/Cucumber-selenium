@@ -1,5 +1,6 @@
 package br.com.fcsilva.steps;
 
+import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
@@ -55,11 +56,17 @@ public class InserirContasSteps {
 
 
     }
-    @Quando("informo a Conta {string}")
-    public void informoAConta(String conta) {
-        driver.findElement(By.id("nome")).sendKeys(conta);
+    @Quando("informo a conta {string}")
+    public void informoAConta(String string) {
+        driver.findElement(By.id("nome")).sendKeys(string);
 
     }
+//    @Quando("informo a conta Conta de Teste")
+//    public void informoAContaContaDeTeste() {
+//        driver.findElement(By.id("nome")).sendKeys("Conta de Teste");
+//    }
+
+
     @Quando("seleciono salvar")
     public void selecionoSalvar() {
         driver.findElement(By.className("btn")).click();
@@ -71,6 +78,34 @@ public class InserirContasSteps {
         Assert.assertEquals("Conta adicionada com sucesso!", texto.getText());
 
     }
+
+    @Então("vou notificar que o nome da conta é obrigatório")
+    public void souNotificarQueONomeDaContaÉObrigatório() {
+        WebElement texto = driver.findElement(By.xpath("//div[@class='alert alert-danger']"));
+        Assert.assertEquals("Informe o nome da conta", texto.getText());
+    }
+
+    @Então("sou notificado que já existe uma conta com esse nome")
+    public void souNotificadoQueJáExisteUmaContaComEsseNome() {
+        String texto = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
+        Assert.assertEquals("Já existe uma conta com esse nome!", texto);
+
+    }
+
+    @Então("recebo a mensagem {string}")
+    public void receboAMensagem(String string) {
+        String texto = driver.findElement(By.xpath("//div[starts-with(@class, 'alert alert-' )]")).getText();
+        Assert.assertEquals(string, texto);
+
+    }
+
+
+    // gancho - Hook
+    @After
+    public void fecharBrowser(){
+        driver.quit();
+    }
+
 
 
 }
