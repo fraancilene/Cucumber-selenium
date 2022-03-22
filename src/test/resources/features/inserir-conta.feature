@@ -1,5 +1,6 @@
 # language: pt
 
+  # cenario imperativo
 Funcionalidade: Cadastro de contas
 
   Como um usuário

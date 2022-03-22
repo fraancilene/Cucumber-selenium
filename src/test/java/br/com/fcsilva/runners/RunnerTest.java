@@ -10,13 +10,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/resources/features/inserir-conta.feature",
         glue = "br.com.fcsilva.steps",
-        //tags = "~@ignore",
+        tags = "not @ignore",
         plugin = {"pretty", "html:target/report-html", "json:target/report.json" },
         monochrome = false,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        dryRun = false
+        dryRun = true
 
 
 )
