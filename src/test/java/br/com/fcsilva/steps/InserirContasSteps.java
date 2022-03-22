@@ -115,7 +115,7 @@ public class InserirContasSteps {
 
 
     // gancho - Hook
-    @After (order = 0) // ultimo a ser executado
+    @After (order = 0, value = "@funcionais") // ultimo a ser executado
     public void fecharBrowser(){
         driver.quit();
     }
