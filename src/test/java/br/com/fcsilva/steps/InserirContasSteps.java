@@ -1,15 +1,18 @@
 package br.com.fcsilva.steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.*;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class InserirContasSteps {
 
@@ -99,9 +102,20 @@ public class InserirContasSteps {
 
     }
 
+    // tirando screeshots para evidências
+    @After(order = 1) // ordem de execução
+    public void screenchot(Scenario cenario) throws IOException {
+        // tirando screenshot
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        // salvando o screenshot
+        FileUtils.copyFile(file, new File("target/screenshots/" +cenario.getId()+ ".jpg"));
+
+
+    }
+
 
     // gancho - Hook
-    @After
+    @After (order = 0) // ultimo a ser executado
     public void fecharBrowser(){
         driver.quit();
     }
